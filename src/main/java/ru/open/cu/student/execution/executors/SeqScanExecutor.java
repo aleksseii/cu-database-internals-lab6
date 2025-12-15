@@ -6,4 +6,16 @@ package ru.open.cu.student.execution.executors;
  */
 public class SeqScanExecutor implements Executor {
 
+    @Override
+    public void open() {
+    }
+
+    @Override
+    public Object next() {
+        return null;
+    }
+
+    @Override
+    public void close() {
+    }
 }

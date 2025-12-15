@@ -7,4 +7,16 @@ package ru.open.cu.student.execution.executors;
  */
 public class ProjectExecutor implements Executor {
 
+    @Override
+    public void open() {
+    }
+
+    @Override
+    public Object next() {
+        return null;
+    }
+
+    @Override
+    public void close() {
+    }
 }

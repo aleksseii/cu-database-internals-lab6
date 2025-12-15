@@ -34,6 +34,7 @@ public class PlannerImpl implements Planner {
         return switch (queryTree.commandType) {
             case CREATE -> planCreate(queryTree);
             case INSERT -> planInsert(queryTree);
+            case SELECT -> throw new UnsupportedOperationException();
         };
     }
 
