@@ -24,7 +24,6 @@ import java.util.*;
  * Сложность:
  * - insert: O(1) в среднем (может O(log n) при split'е)
  * - search: O(1) в среднем
- * - delete: O(1) в среднем
  */
 public class HashIndexImpl implements HashIndex {
     private final String indexName;
@@ -100,11 +99,6 @@ public class HashIndexImpl implements HashIndex {
         // 7. Вернуть results
 
         return results;
-    }
-
-    @Override
-    public void delete(Comparable<?> key, TID tid) {
-        // TODO: реализовать удаление
     }
 
     @Override

@@ -14,14 +14,6 @@ public interface Index {
     void insert(Comparable<?> key, TID tid);
 
     /**
-     * Удалить запись из индекса.
-     *
-     * @param key поисковой ключ
-     * @param tid адрес для удаления (для разрешения коллизий)
-     */
-    void delete(Comparable<?> key, TID tid);
-
-    /**
      * Получить имя индекса.
      */
     String getName();

@@ -90,17 +90,6 @@ public class BPlusTreeIndexImpl implements BPlusTreeIndex {
         return new ArrayList<>();
     }
 
-    @Override
-    public void delete(Comparable<?> key, TID tid) {
-        // TODO: реализовать удаление
-        // 1. Найти листовой узел, содержащий (key, tid)
-        // 2. Удалить запись из узла
-        // 3. Если узел стал недозаполнен (numKeys < order):
-        //    - Попытаться забрать ключ у соседа (redistribution)
-        //    - Или объединить с соседом (merge)
-        // 4. Рекурсивно обработать родителя, если нужно
-        // 5. Если корень пустой и есть один потомок → понизить высоту
-    }
 
     @Override
     public String getName() {

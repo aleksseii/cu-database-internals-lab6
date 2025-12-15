@@ -30,10 +30,10 @@
 
 - **`Index`** — базовый интерфейс для всех индексов
   - `void insert(Comparable key, TID tid)` — вставка записи (ключ → адрес строки)
-  - `void delete(Comparable key, TID tid)` — удаление записи
   - `String getName()` — имя индекса
   - `IndexType getType()` — тип индекса (HASH или BTREE)
   - `String getColumnName()` — имя столбца, на котором построен индекс
+  - **Примечание:** метод `delete()` НЕ требуется к реализации в этом задании
 
 - **`HashIndex`** — специализированный интерфейс для хеш-индекса
   - `List<TID> search(Comparable key)` — поиск по равенству
@@ -71,15 +71,11 @@
    - Возвращает список всех TID'ов с этим ключом
    - Обрабатывает коллизии и overflow-страницы
 
-4. **Реализует метод `delete(Comparable key, TID tid)`**:
-   - Находит и удаляет запись из индекса
-   - Поддерживает правильное состояние бакета
-
-5. **Реализует метод `scanAll()`**:
+4. **Реализует метод `scanAll()`**:
    - Возвращает все TID'ы в индексе
    - Используется для проверки целостности и отладки
 
-6. **Вспомогательные методы**:
+5. **Вспомогательные методы**:
    - `int hashFunction(Comparable key)` — функция хеширования для разных типов
    - `int computeBucket(int hash)` — вычисление номера бакета с поддержкой linear hashing
    - `void performSplit()` — раскол бакета при переполнении
@@ -117,7 +113,6 @@ if (bucket > maxBucket):
 
 - **Сложность вставки:** O(1) в среднем
 - **Сложность поиска:** O(1) в среднем
-- **Сложность удаления:** O(1) в среднем
 - **Поддержка range-запросов:** ❌ НЕ поддерживается
 - **Динамическое расширение:** ✅ Линейное хеширование
 - **Работа на диске:** ✅ PageFileManager + overflow-страницы
@@ -127,9 +122,10 @@ if (bucket > maxBucket):
 - Конструктор с инициализацией
 - `insert(key, tid)` с поддержкой overflow и split'ов
 - `search(key)` с обработкой коллизий
-- `delete(key, tid)` 
 - `scanAll()` для полного сканирования
 - Вспомогательные методы хеширования и вычисления бакета
+
+**Важно:** Метод `delete()` НЕ требуется к реализации в рамках этого задания.
 
 ---
 
@@ -227,7 +223,6 @@ public Executor createExecutor(PhysicalPlanNode node) {
 - `List<TID> rangeSearch(Comparable from, Comparable to)` — range-запрос
 - `List<TID> searchGreaterThan(Comparable value)` — поиск > значения
 - `List<TID> searchLessThan(Comparable value)` — поиск < значения
-- `void delete(Comparable key, TID tid)` — удаление
 - `List<TID> scanAll()` — полное сканирование
 - `int getHeight()` — высота дерева
 - `int getOrder()` — порядок дерева (M)
@@ -264,10 +259,7 @@ public Executor createExecutor(PhysicalPlanNode node) {
    - Используют sibling-ссылки для efficient поиска
    - Поддерживают инклюзивные и эксклюзивные границы
 
-6. **Реализует метод `delete(Comparable key, TID tid)`**:
-   - Удаляет запись и поддерживает инварианты дерева
-
-7. **Реализует метод `scanAll()`**:
+6. **Реализует метод `scanAll()`**:
    - Обходит все листья слева направо
    - Возвращает все TID'ы в отсортированном порядке
 
@@ -310,9 +302,10 @@ public Executor createExecutor(PhysicalPlanNode node) {
 - `rangeSearch(from, to)` — **KEY FEATURE** для range-запросов
 - `searchGreaterThan(value)` — поиск > значения
 - `searchLessThan(value)` — поиск < значения
-- `delete(key, tid)` с поддержкой merge'а
 - `scanAll()` — полное сканирование листьев
 - Sibling-ссылки для эффективного обхода
+
+**Важно:** Метод `delete()` НЕ требуется к реализации в рамках этого задания.
 
 ---
 
