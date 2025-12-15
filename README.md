@@ -253,7 +253,7 @@ public Executor createExecutor(PhysicalPlanNode node) {
    - Находит все записи с этим ключом
    - Возвращает список TID'ов
 
-4. **Реализует метод `rangeSearch(Comparable from, Comparable to)`** ⭐
+4. **Реализует метод `rangeSearch(Comparable from, Comparable to)`**
    - **САМЫЙ ВАЖНЫЙ метод для B+-Tree!**
    - Спускается от корня к первому листу с ключом >= from
    - Обходит листья слева направо по sibling-ссылкам
